@@ -91,18 +91,13 @@ class JedisConnectionPoolFactory
 		Jedis jedis = new Jedis(this.host, this.port, this.timeout);
 		boolean done = false;
 		while (!done) {
-			try {
+			
 				jedis.connect();
 				if (password != null) {
 					jedis.auth(password);
 				}
 				done = true;
-			} catch (Exception ex) {
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException ie) {
-				}
-			}
+			
 		}
 		return jedis;
 	}
